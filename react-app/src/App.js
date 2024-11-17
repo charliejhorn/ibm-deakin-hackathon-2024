@@ -65,16 +65,16 @@ function App() {
         <h1>Chat Interface</h1>
         <div className="chat-window">
           <div className="messages">
-            {[...messages].reverse().map((message, index) => (
-              <div key={index} className={`message ${message.sender}`}>
-                {message.text}
-              </div>
-            ))}
             {isLoading && (
               <div className="message agent">
                 <div className="loading">...</div>
               </div>
             )}
+            {[...messages].reverse().map((message, index) => (
+              <div key={index} className={`message ${message.sender}`}>
+                {message.text}
+              </div>
+            ))}
           </div>
 
           <div className="input-area">
@@ -82,7 +82,7 @@ function App() {
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyPress}
               placeholder="Type your message..."
               disabled={isLoading}
             />
@@ -93,6 +93,7 @@ function App() {
             >
               <option value="mistral">mistral</option>
               <option value="mmmistral">mmmistral</option>
+              <option value="FinAdvice">FinAdvice</option>
             </select>
             <button onClick={handleSend} disabled={isLoading}>
               Send
