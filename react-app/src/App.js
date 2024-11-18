@@ -40,7 +40,15 @@ function App() {
 
       // Create context from previous messages
       const context = messages.map(message => `${message.sender}: ${message.text}`).join('\n');
-      const prompt = `${context}\nuser: ${userInput}`;
+      
+      // Check if FinAdviceINST is selected and include the system prompt
+      let prompt;
+      if (selectedModel === 'FinAdviceINST') {
+        const systemPrompt = `You are an AI financial advisor specializing in investment strategies. Your goal is to provide clear, accurate, and helpful investment advice to banking users. You should consider the user's financial goals, risk tolerance, and investment horizon when giving advice. Always prioritize the user's financial well-being and provide information on potential risks and benefits associated with different investment options. Remember to be polite, professional, and informative in your responses. Please respond to the following question:`;
+        prompt = `${context}\n${systemPrompt}\nuser: ${userInput}`;
+      } else {
+        prompt = `${context}\nuser: ${userInput}`;
+      }
 
       // Get AI response
       const aiResponse = await generateResponse(prompt);
@@ -94,6 +102,7 @@ function App() {
               <option value="mistral">mistral</option>
               <option value="mmmistral">mmmistral</option>
               <option value="FinAdvice">FinAdvice</option>
+              <option value="FinAdviceINST">FinAdviceINST</option>
             </select>
             <button onClick={handleSend} disabled={isLoading}>
               Send
