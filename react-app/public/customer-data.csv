@@ -1,2 +1,2 @@
-Customer ID,Age,Region,Income,Savings,Risk Tolerance,Recent Transactions,Preferred Investment Types,Investment Horizon
-1001,35,Northeast,75000,20000,Medium,"[{""amount"": 100, ""date"": ""2023-01-01"", ""type"": ""groceries""}, {""amount"": 200, ""date"": ""2023-01-05"", ""type"": ""utilities""}]","stocks, bonds",Medium-term
+User ID,Financial Goals,Risk Tolerance,Investment Horizon,Current Financial Situation,Age,Retirement Plans,Tax Status,Preferred Investment Style,Emotional Factors
+1,Save for a house,Moderate,5 years,Monthly income of $4000,32,Yes,Single filing status,Prefer actively managed funds,Low financial literacy and uncomfortable with managing investments

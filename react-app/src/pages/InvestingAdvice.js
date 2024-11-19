@@ -1,22 +1,23 @@
-import React from 'react';
-import './StockOptions.css';
+import React, { useState, useEffect, useCallback } from 'react';
+import './InvestingAdvice.css';
+import Markdown from 'react-markdown';
 import generateResponse from '../Model';
 
 const StockOptions = () => {
     // awaiting data state
-    const [isAwaitingData, setIsAwaitingData] = React.useState(true);
+    const [isAwaitingData, setIsAwaitingData] = useState(true);
 
     // data upload state
-    const [userData, setUserData] = React.useState(null);
+    const [userData, setUserData] = useState(null);
 
     // AI response bool state
-    const [isAwaitingResponse, setIsAwaitingResponse] = React.useState(true);
+    const [isAwaitingResponse, setIsAwaitingResponse] = useState(true);
 
     // AI advice state
-    const [advice, setAdvice] = React.useState(null);
+    const [advice, setAdvice] = useState(null);
 
     // request type
-    const [requestType, setRequestType] = React.useState(null);
+    const [requestType, setRequestType] = useState(null);
 
     // handle sample data upload
     const handleSampleDataUpload = () => {
@@ -66,16 +67,19 @@ const StockOptions = () => {
 
     const sendUserData = (data) => {
         setRequestType("Giving investment advice based on user data.");
-        setUserData(data);
+
+        // manipulate data into a string
+        let userDataString = '';
+        for (const key in data[0]) {
+            userDataString += `${key}: ${data[0][key]}\n`;
+        }
+
+        setUserData(userDataString);
         setIsAwaitingData(false);
         setIsAwaitingResponse(true);
-        getInvestmentAdvice().then((response) => {
-            setAdvice(response);
-            setIsAwaitingResponse(false);
-        });
     };
 
-    const getInvestmentAdvice = async () => {
+    const getInvestmentAdvice = useCallback(async () => {
         // Construct prompt
         let prompt;
         const systemPrompt = `You are an AI financial advisor specializing in investment strategies. Your goal is to provide clear, accurate, and helpful investment advice to banking users. You should consider the user's financial goals, risk tolerance, and investment horizon when giving advice. Always prioritize the user's financial well-being and provide information on potential risks and benefits associated with different investment options. Remember to be polite, professional, and informative in your responses. Please provide investment advice with respect to the following user data:`;
@@ -85,36 +89,43 @@ const StockOptions = () => {
         const aiResponse = await generateResponse('FinAdviceINST', prompt);
 
         return aiResponse;
-    };
+    }, [userData]);
+
+    useEffect(() => {
+        if (userData) {
+            getInvestmentAdvice().then((response) => {
+                setAdvice(response);
+                setIsAwaitingResponse(false);
+            });
+        }
+    }, [userData, getInvestmentAdvice]);
 
     const analyseStockData = async () => {
-        // retrieve stock data stored in /sp500.csv
-        let stockData;
-        fetch('/sp500.csv')
-            .then((response) => response.text())
-            .then((text) => {
-                stockData = parseCSV(text);
-                console.log(stockData);
-            });
+        try {
+            // retrieve stock data stored in /sp500.csv
+            const response = await fetch('/sp500.csv');
+            const text = await response.text();
+            const stockData = parseCSV(text);
+            setUserData(stockData);
 
-        setUserData(stockData);
+            setRequestType('Analysing stock data.');
+            setIsAwaitingData(false);
+            setIsAwaitingResponse(true);
 
-        setRequestType('Analysing stock data.');
-        setIsAwaitingData(false);
-        setIsAwaitingResponse(true);
+            // Construct prompt
+            const systemPrompt = `You are an AI financial advisor specializing in investment strategies. Your goal is to provide clear, accurate, and helpful investment advice to banking users. Remember to be polite, professional, and informative in your responses. Do not offer personalised advice. The data provided is complete and sufficient. Provide an analysis on the following stock data:`;
+            const prompt = `${systemPrompt}\n${JSON.stringify(stockData)}`;
 
-        // Construct prompt
-        let prompt; 
-        const systemPrompt = `You are an AI financial advisor specializing in investment strategies. Your goal is to provide clear, accurate, and helpful investment advice to banking users. Remember to be polite, professional, and informative in your responses. Do not offer personalised advice. The data provided is complete and sufficient. Provide an analysis on the following stock data:`;
-        prompt = `${systemPrompt}\n${stockData}`;
+            console.log(prompt)
 
+            // Get AI response
+            const aiResponse = await generateResponse('FinAdviceINST', prompt);
 
-        // Get AI response
-        const aiResponse = await generateResponse('FinAdviceINST', prompt);
-
-        setIsAwaitingResponse(false);
-
-        setAdvice(aiResponse);
+            setIsAwaitingResponse(false);
+            setAdvice(aiResponse);
+        } catch (error) {
+            console.error('Error fetching or processing stock data:', error);
+        }
     };
 
     return (
@@ -151,7 +162,9 @@ const StockOptions = () => {
                         {userData && (
                             <div>
                                 <h3>User data</h3>
-                                {JSON.stringify(userData, null, 2)}
+                                <p>{JSON.stringify(userData)}</p>
+                                <h3>Markdown</h3>
+                                <Markdown>{userData}</Markdown>
                             </div>
                         )}
                     </div>

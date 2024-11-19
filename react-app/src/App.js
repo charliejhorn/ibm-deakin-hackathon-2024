@@ -2,7 +2,7 @@ import './index.css'
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Chat from './pages/Chat';
-import StockOptions from './pages/StockOptions';
+import StockOptions from './pages/InvestingAdvice';
 import './App.css';
 
 function App() {

@@ -1,0 +1,2 @@
+Customer ID,Age,Region,Income,Savings,Risk Tolerance,Recent Transactions,Preferred Investment Types,Investment Horizon
+1001,35,Northeast,75000,20000,Medium,"[{""amount"": 100, ""date"": ""2023-01-01"", ""type"": ""groceries""}, {""amount"": 200, ""date"": ""2023-01-05"", ""type"": ""utilities""}]","stocks, bonds",Medium-term
