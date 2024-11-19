@@ -34,91 +34,37 @@
   z-index: 20;
 }
 
-.App-header h1 {
-  padding: 20px;
+.navbar {
+  padding: 20px 0;
   margin: 0;
   width: 100%;
   position: absolute;
   top: 0;
   z-index: 20;
 
-
   background-color: rgba(202, 202, 202, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
-  
-
-}
-
-.chat-window {
-  width: 90%;
-  height: 100%;
-
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  font-size: 0.65em;
-  z-index: 10;
+  justify-content: space-around; 
+  align-items: center;
 }
 
-.messages {
-  /* flex: 1; */
-  padding: 10px;
-  overflow-y: auto;
-  height: 100%;
+.navbar-heading {
+  margin: 0;
+}
 
+.navbar-tabs {
   display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start; /* Align messages to the left */
+  gap: 1em;
 }
 
-.message {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  max-width: 80%; /* Optional: to prevent very long messages from stretching too far */
-}
-
-.message.agent {
-  background-color: var(--blue);
-  text-align: left;
-  color: white;
-}
-
-.message.user {
-  text-align: left;
-}
-
-.input-area {
-  display: flex;
-  border-radius: 5px;
-  width: 100%;
-  font-size: inherit;
-
-  padding-bottom: 20px;
-}
-
-.input-area input {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  outline: none;
-  border-radius: 5px 0 0 5px;
-  font-family: 'Urbanist', sans-serif;
-  font-size: inherit;
-  background-color: white;
-}
-
-.input-area button {
-  padding: 10px;
-  border: none;
-  background: var(--grey);
-  color: white;
+.navbar-tab {
+  margin-left: 20px;
   cursor: pointer;
-  border-radius: 0 5px 5px 0;
-  font-family: 'Urbanist', sans-serif;
-  font-size: inherit;
+  text-decoration: none;
+  color: inherit;
 }
+
+
