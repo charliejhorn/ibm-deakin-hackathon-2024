@@ -1,1 +1,11 @@
-# ibm-deakin-hackathon-2024
+# IBM Deakin Hackathon 2024
+### Team 8
+Horn, Charlie
+Licup, Joel
+Rao, Tejus
+Whitsed, Charlie
+
+## [Mistal Model LoRA Fine Tuning](./model-fine-tuning/)
+
+## React Prototype App
+
