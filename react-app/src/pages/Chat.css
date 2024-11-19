@@ -1,4 +1,7 @@
 .chat-window {
+    position: fixed;
+    bottom: 0;
+    
     width: 90%;
     height: 100%;
   
@@ -8,47 +11,46 @@
   
     font-size: 0.65em;
     z-index: 10;
-  }
+}
   
-  .messages {
-    /* flex: 1; */
+.messages {
+    flex: 1;
     padding: 10px;
     overflow-y: auto;
     height: 100%;
-  
+
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-start; /* Align messages to the left */
-  }
-  
-  .message {
+}
+
+.message {
     display: inline-block;
     margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
     max-width: 80%; /* Optional: to prevent very long messages from stretching too far */
-  }
-  
-  .message.agent {
+}
+
+.message.agent {
     background-color: var(--blue);
     text-align: left;
     color: white;
-  }
-  
-  .message.user {
+}
+
+.message.user {
     text-align: left;
-  }
-  
-  .input-area {
+}
+
+.input-area {
     display: flex;
     border-radius: 5px;
     width: 100%;
     font-size: inherit;
-  
     padding-bottom: 20px;
-  }
-  
-  .input-area input {
+}
+
+.input-area input {
     flex: 1;
     padding: 10px;
     border: none;
@@ -57,9 +59,9 @@
     font-family: 'Urbanist', sans-serif;
     font-size: inherit;
     background-color: white;
-  }
-  
-  .input-area button {
+}
+
+.input-area button {
     padding: 10px;
     border: none;
     background: var(--grey);
@@ -68,4 +70,4 @@
     border-radius: 0 5px 5px 0;
     font-family: 'Urbanist', sans-serif;
     font-size: inherit;
-  }
+}
