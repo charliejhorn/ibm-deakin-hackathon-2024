@@ -30,6 +30,14 @@
     max-width: 80%; /* Optional: to prevent very long messages from stretching too far */
 }
 
+.message p {
+    margin: 0.5em;
+}
+
+.message.user p {
+    margin-left: 0;
+}
+
 .message.agent {
     background-color: var(--blue);
     text-align: left;
@@ -45,7 +53,8 @@
     border-radius: 5px;
     width: 100%;
     font-size: inherit;
-    padding-bottom: 20px;
+    padding-bottom: 2em;
+    margin-top: 1em;
 }
 
 .input-area input {

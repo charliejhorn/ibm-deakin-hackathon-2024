@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Chat.css';
 import generateResponse from '../Model';
+import { micromark } from 'micromark';
 
 const Chat = () => {
     const [messages, setMessages] = useState([
@@ -65,9 +66,11 @@ const Chat = () => {
                 </div>
             )}
             {[...messages].reverse().map((message, index) => (
-                <div key={index} className={`message ${message.sender}`}>
-                    {message.text}
-                </div>
+                <div 
+                    key={index} 
+                    className={`message ${message.sender}`} 
+                    dangerouslySetInnerHTML={{ __html: micromark(message.text) }}
+                />
             ))}
         </div>
 
