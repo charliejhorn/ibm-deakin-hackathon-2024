@@ -1,0 +1,26 @@
+.stock-window {
+    width: 90%;
+    text-align: left;
+    font-size: 0.65em;
+}   
+
+.upload {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sample-data-button {
+    margin-bottom: 1em;
+    width: 12em;
+}
+
+.upload h2 {
+    margin-top: 3em;
+}
+
+.upload p {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
