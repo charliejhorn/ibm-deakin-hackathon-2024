@@ -1,6 +1,0 @@
-Customer ID,Name,Age,Gender,Income ($),Savings ($),Credit Score,Investment Experience (Years),Risk Tolerance,Investment Goal,Current Investments ($),Occupation,Dependents,Region
-1001,John Doe,35,Male,75000,20000,750,5,Medium,Retirement,15000,Engineer,2,Northeast
-1002,Jane Smith,29,Female,85000,30000,780,7,High,Wealth Accumulation,50000,Financial Analyst,0,Midwest
-1003,Mike Johnson,42,Male,60000,10000,700,2,Low,Education for Children,5000,Teacher,3,Southeast
-1004,Emily Brown,50,Female,95000,50000,800,10,High,Retirement,100000,Entrepreneur,1,West Coast
-1005,Sarah White,38,Female,70000,15000,720,4,Medium,Travel and Leisure,10000,Healthcare Professional,2,Northeast

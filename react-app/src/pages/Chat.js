@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Chat.css';
+import generateResponse from '../Model';
 
 const Chat = () => {
     const [messages, setMessages] = useState([
@@ -9,27 +10,7 @@ const Chat = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [selectedModel, setSelectedModel] = useState('auto-reply');
 
-    const generateResponse = async (prompt) => {
-        try {
-            const response = await fetch('http://localhost:11434/api/generate', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                model: selectedModel,
-                prompt: prompt,
-                stream: false
-                }),
-            });
-
-            const data = await response.json();
-            return data.response;
-        } catch (error) {
-            console.error('Error:', error);
-            return 'Sorry, I encountered an error processing your request.';
-        }
-    };
+    
 
     const handleSend = async () => {
         if (userInput.trim()) {
@@ -61,7 +42,7 @@ const Chat = () => {
             }
 
             // Get AI response
-            const aiResponse = await generateResponse(prompt);
+            const aiResponse = await generateResponse(selectedModel, prompt);
             setIsLoading(false);
 
             setMessages(prev => [...prev, {
