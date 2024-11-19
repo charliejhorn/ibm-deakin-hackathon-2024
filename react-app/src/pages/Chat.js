@@ -10,8 +10,6 @@ const Chat = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [selectedModel, setSelectedModel] = useState('auto-reply');
 
-    
-
     const handleSend = async () => {
         if (userInput.trim()) {
             const userMessage = { sender: 'user', text: userInput };

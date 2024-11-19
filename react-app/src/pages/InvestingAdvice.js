@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './InvestingAdvice.css';
-import Markdown from 'react-markdown';
 import generateResponse from '../Model';
+import {micromark} from 'micromark'
 
-const StockOptions = () => {
+const InvestingAdvice = () => {
     // awaiting data state
     const [isAwaitingData, setIsAwaitingData] = useState(true);
 
@@ -128,6 +128,15 @@ const StockOptions = () => {
         }
     };
 
+    const renderWithLineBreaks = (text) => {
+        return text.split('\n').map((item, index) => (
+            <React.Fragment key={index}>
+                {item}
+                <br />
+            </React.Fragment>
+        ));
+    };
+
     return (
         <div className="stock-window">            
             {/* upload banking data */}
@@ -156,15 +165,13 @@ const StockOptions = () => {
                         {!isAwaitingResponse && (
                             <div>
                                 <h3>Investment advice and options</h3>
-                                <p>{advice}</p>
+                                <div dangerouslySetInnerHTML={{ __html: micromark(advice) }} />
                             </div>
                         )}
                         {userData && (
-                            <div>
+                            <div className='user-data-container'>
                                 <h3>User data</h3>
-                                <p>{JSON.stringify(userData)}</p>
-                                <h3>Markdown</h3>
-                                <Markdown>{userData}</Markdown>
+                                <p>{renderWithLineBreaks(userData)}</p>
                             </div>
                         )}
                     </div>
@@ -174,4 +181,4 @@ const StockOptions = () => {
     );
 };
 
-export default StockOptions;
+export default InvestingAdvice;

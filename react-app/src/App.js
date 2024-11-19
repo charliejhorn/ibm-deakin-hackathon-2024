@@ -2,7 +2,7 @@ import './index.css'
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Chat from './pages/Chat';
-import StockOptions from './pages/InvestingAdvice';
+import InvestingAdvice from './pages/InvestingAdvice';
 import './App.css';
 
 function App() {
@@ -14,12 +14,12 @@ function App() {
             <h1 className="navbar-heading">FinAdvice</h1>
             <div className="navbar-tabs">
               <Link to="/" className="navbar-tab">Chat</Link>
-              <Link to="/stock-options" className="navbar-tab">Stock Options</Link>
+              <Link to="/investing-advice" className="navbar-tab">Investing Advice</Link>
             </div>
           </nav>
           <Routes>
             <Route path="/" element={<Chat />} />
-            <Route path="/stock-options" element={<StockOptions />} />
+            <Route path="/investing-advice" element={<InvestingAdvice />} />
           </Routes>
         </header>
         
