@@ -5,7 +5,7 @@ Licup, Joel
 Rao, Tejus
 Whitsed, Charlie
 
-## [Mistal Model LoRA Fine Tuning](./model-fine-tuning/)
+## [Mistral Model LoRA Fine Tuning](./model-fine-tuning/)
 
 ## React Prototype App
 
