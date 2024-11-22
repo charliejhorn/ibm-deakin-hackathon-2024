@@ -9,7 +9,8 @@ const Chat = () => {
     ]);
     const [userInput, setUserInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedModel, setSelectedModel] = useState('auto-reply');
+    // const [selectedModel, setSelectedModel] = useState('auto-reply');
+    const [selectedModel, setSelectedModel] = useState('FinAdviceINST');
 
     const handleSend = async () => {
         if (userInput.trim()) {
